@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore 2025 NFL quarterback rankings, weekly performances, and team QB passing production.">
+  <title>2025 NFL qb statistics</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="vendor/d3.v7.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="masthead"><span>NFL QUARTERBACK STATISTICS</span><span>2025 / REGULAR SEASON</span></header>
+  <main id="main-content" aria-busy="true">
+    <section class="intro"><p class="eyebrow">THE QUARTERBACK PICTURE</p><h1>2025 NFL qb statistics</h1><p class="lede">Compare season production, follow the weekly rhythm, and put passing performance in team context.</p></section>
+    <section id="status" role="status" aria-live="polite">
+      <div><strong id="status-title">Loading quarterback data…</strong><p id="status-message">Preparing regular-season rankings, weekly records, and team totals.</p></div>
+      <button id="retry-load" type="button" hidden>Try again</button>
+    </section>
+    <noscript><p>This dashboard needs JavaScript enabled to display its interactive charts.</p></noscript>
+    <div id="dashboard" hidden>
+      <section class="stats" aria-label="Dataset overview"><div><strong id="player-count"></strong><span>Quarterbacks</span></div><div><strong id="team-count"></strong><span>Teams</span></div><div><strong id="yards-total"></strong><span>QB passing yards</span></div><div><strong>18</strong><span>Regular-season weeks</span></div></section>
+      <section class="selection-panel" aria-label="Active chart selections">
+        <div class="selection-chips" role="status" aria-live="polite"><span id="team-selection" class="chip"></span><span id="qb-selection" class="chip"></span></div>
+        <div class="selection-actions"><button id="clear-qb" type="button">Clear QB</button><button id="clear-team" type="button">Clear Team</button><button id="reset-all" type="button">Reset All</button></div>
+        <p>Select a QB bar to update the weekly trend. Select a team point to filter rankings and weekly records. A team change clears the QB if they did not play for that team.</p>
+      </section>
+      <section class="card overview" aria-labelledby="ranking-title">
+        <div class="card-head"><div><p class="eyebrow">01 / OVERVIEW</p><h2 id="ranking-title">Season rankings</h2></div><div class="controls"><label>Compare<select id="ranking-metric"><option value="passing_yards">Passing yards</option><option value="passing_tds">Passing touchdowns</option><option value="passing_interceptions">Interceptions thrown</option></select></label><label>Order<select id="ranking-order"><option value="desc">Highest first</option><option value="asc">Lowest first</option></select></label></div></div>
+        <p id="ranking-caption" class="caption"></p><p class="legend"><span class="key"></span>QB production <span class="key selected-key"></span>Selected QB</p><div id="ranking-axis" class="chart" aria-hidden="true"></div><div class="scroll-chart" tabindex="0" aria-label="Scrollable quarterback rankings"><div id="rankings" class="chart"></div></div>
+      </section>
+      <div class="detail-grid">
+        <section class="card" aria-labelledby="weekly-title"><div class="card-head"><div><p class="eyebrow">02 / PLAYER DETAIL</p><h2 id="weekly-title">Weekly passing trend</h2></div></div><label class="player-control">Quarterback<select id="weekly-player"></select></label><p class="caption">Passing yards by week. Gaps indicate no recorded appearance; a zero marks an actual zero-yard record. When a team is selected, only that team’s appearances are shown.</p><div id="weekly" class="chart" aria-live="polite"></div><p class="legend"><span class="key"></span>Recorded QB passing yards · hover, tap, or focus a dot for details</p></section>
+        <section class="card" aria-labelledby="team-title"><div class="card-head"><div><p class="eyebrow">03 / TEAM CONTEXT</p><h2 id="team-title">Team QB production</h2></div></div><p class="caption">Each point is a team: QB passing yards versus passing touchdowns. Totals exclude passes by non-QB players. Select a point to filter the rankings; the scatterplot keeps all teams for comparison.</p><div id="teams" class="chart"></div><p class="legend"><span class="key"></span>One team <span class="key selected-key"></span>Selected team</p></section>
+      </div>
+      <footer><strong>Behind the numbers</strong><p>Source: nflverse player statistics, downloaded with nflreadpy. Only 2025 regular-season QB records are included. Players are grouped by unique player ID; team totals use each record’s team, including midseason moves. All chart data arrives through the Flask API.</p></footer>
+    </div>
+  </main>
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+</body>
+</html>
