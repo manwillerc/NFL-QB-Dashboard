@@ -193,15 +193,4 @@ requirements.txt             Runtime Python dependencies
 README.md                    Setup, controls, API, and data notes
 ```
 
-## Submission notes
 
-Include the backend, frontend, dataset, downloader, requirements, and README in
-the submission ZIP. Exclude `.venv`, `node_modules`, `.git`, editor settings,
-caches, and secrets; `.gitignore` alone does not exclude files from a manually
-created ZIP. Keep the D3 license with its bundled library.
-
-The student must supply their own narrated demo and final report. Review and
-understand the implementation, verify findings against the data, and accurately
-disclose AI assistance. Codex assisted with backend/frontend implementation,
-interaction design, testing, and documentation; personal development hours,
-reflections, sketches, and narration must come from the student.
